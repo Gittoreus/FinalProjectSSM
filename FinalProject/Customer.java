@@ -5,8 +5,8 @@ import java.util.Random;
 public class Customer {
 	private String name; // Unique first name for the customer.
 	private int entryTime; // Time they entered the queue; Qualifies as unique identifier
-	private int waitTime; // Time the customer will wait.
-	private int procTime; // Amount of time it will take to process.
+	private int waitTime; // Time the customer has waited so far
+	private int procTime; //Time it will take to process the customer
 	private int cart; // Number of items in the cart
 
 	private Random rand = new Random();
@@ -19,24 +19,17 @@ public class Customer {
 		procTime = 0;
 		cart = 0;
 	}
-	
-	// Main Constructor
-	public Customer(String n) {
-		name = n;
-		entryTime = 0;
-		waitTime = rand.nextInt(10);
-		procTime = rand.nextInt(10);
-		cart = rand.nextInt(50);
-	}
-	
-	// Constructor for replacement copy
-		public Customer(String n, int e, int w, int p, int c) {
-			name = n;
-			entryTime = e;
-			waitTime = w;
-			procTime = p;
-			cart = c;
-		}
+
+    //@Author : Matthew Keville
+    //Primary Constructor	
+    public Customer(String name, int entryTime){
+        this.name = name;
+        this.entryTime = entryTime;
+        this.waitTime = 0;
+        this.cart = rand.nextInt(10);
+        this.procTime = 1 + rand.nextInt(cart);
+    }
+
 
 	public String getName() {
 		return name;
@@ -54,6 +47,7 @@ public class Customer {
 		this.entryTime = entryTime;
 	}
 
+    
 	public int getWaitTime() {
 		return waitTime;
 	}
